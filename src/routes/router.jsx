@@ -5,6 +5,7 @@ import LoginPage from "../pages/loginPage/LoginPage";
 import RegisterPage from "../pages/registerPage/RegisterPage";
 import ProfileUpdatePage from "../pages/profileUpdatePage/ProfileUpdatePage";
 import PrivateRoute from "./PrivateRoute";
+import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         ),
       },
     ],
-    errorElement: <h1>404</h1>,
+    errorElement: <NotFoundPage />,
   },
 ]);
 
