@@ -90,7 +90,7 @@ const LoginPage = () => {
   return (
     <section className="mt-44">
       <div className="container mx-auto px-3">
-        <div className="sm:w-3/4 lg:w-1/2 xl:w-1/3 mx-auto bg-base-100 p-6 border shadow-xl rounded-xl">
+        <div className="sm:w-3/4 lg:w-1/2 xl:w-1/3 mx-auto bg-slate-100 dark:bg-slate-800 p-6 border dark:border-slate-800 shadow-xl rounded-xl">
           <form onSubmit={handleLogin}>
             <h2 className="text-3xl font-semibold text-center mb-4">Login</h2>
 
