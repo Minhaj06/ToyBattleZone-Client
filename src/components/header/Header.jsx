@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { BsFillSunFill, BsFillMoonStarsFill } from "react-icons/bs";
+import { RxAvatar } from "react-icons/rx";
+import { toast } from "react-hot-toast";
+import { AuthContext } from "../../context/auth";
 
 const Header = () => {
   const [theme, setTheme] = useState("");
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -30,6 +35,17 @@ const Header = () => {
   const toggleTheme = () => {
     const newTheme = theme === "cupcake" ? "night" : "cupcake";
     setTheme(newTheme);
+  };
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        toast.success("Logout Successful");
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -122,19 +138,25 @@ const Header = () => {
       <div className="navbar-end">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-14 rounded-full">
-              <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-            </div>
+            {user?.photoURL ? (
+              <div className="w-12 rounded-full bg-slate-400">
+                <img title={user?.displayName || user?.email} src={user?.photoURL} />
+              </div>
+            ) : (
+              <RxAvatar size={42} />
+            )}
           </label>
           <ul
             tabIndex={0}
             className="mt-3 p-2 menu menu-compact dropdown-content rounded-box w-52 bg-base-200 border-2 border-gray-300 shadow-md"
           >
-            <li>
-              <Link to={`/profile`} className="text-lg">
-                Profile
-              </Link>
-            </li>
+            {user && (
+              <li>
+                <Link to={`/profile`} className="text-lg">
+                  Profile
+                </Link>
+              </li>
+            )}
             <li>
               <Link to={`#`} className="text-lg" onClick={toggleTheme}>
                 Switch to:{" "}
@@ -145,16 +167,33 @@ const Header = () => {
                 )}
               </Link>
             </li>
-            <li>
-              <Link to={`/login`} className="text-lg">
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link to={`/register`} className="text-lg">
-                Register
-              </Link>
-            </li>
+            {user ? (
+              <>
+                <li>
+                  <Link to={`/profile`} className="text-lg">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link onClick={handleLogout} to={`#`} className="text-lg">
+                    Logout
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to={`/login`} className="text-lg">
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`/register`} className="text-lg">
+                    Register
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
