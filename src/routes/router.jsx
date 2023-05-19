@@ -6,6 +6,7 @@ import RegisterPage from "../pages/registerPage/RegisterPage";
 import ProfileUpdatePage from "../pages/profileUpdatePage/ProfileUpdatePage";
 import PrivateRoute from "./PrivateRoute";
 import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
+import AddToyPage from "../pages/addToyPage/AddToyPage";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ProfileUpdatePage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add-toy",
+        element: (
+          <PrivateRoute>
+            <AddToyPage />
           </PrivateRoute>
         ),
       },
