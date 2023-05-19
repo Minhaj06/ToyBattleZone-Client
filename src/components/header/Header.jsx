@@ -20,7 +20,7 @@ const Header = () => {
       if (prefersDarkScheme) {
         setTheme("night");
       } else {
-        setTheme("cupcake");
+        setTheme("light");
       }
     }
   }, []);
@@ -29,11 +29,14 @@ const Header = () => {
     if (theme) {
       localStorage.setItem("theme", theme);
       document.documentElement.setAttribute("data-theme", theme);
+      theme === "night"
+        ? document.documentElement.classList.add("dark")
+        : document.documentElement.classList.remove("dark");
     }
   }, [theme]);
 
   const toggleTheme = () => {
-    const newTheme = theme === "cupcake" ? "night" : "cupcake";
+    const newTheme = theme === "light" ? "night" : "light";
     setTheme(newTheme);
   };
 
