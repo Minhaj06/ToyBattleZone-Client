@@ -3,6 +3,7 @@ import "./App.css";
 import { Toaster } from "react-hot-toast";
 import Header from "./components/header/Header";
 import { Outlet } from "react-router-dom";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <main>
           <Outlet />
         </main>
+        <Footer />
       </div>
     </>
   );

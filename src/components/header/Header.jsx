@@ -33,8 +33,8 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar bg-base-200 py-3 lg:py-4 fixed top-0 left-0 w-full z-[1030]">
-      <div className="navbar-start gap-4">
+    <nav className="navbar bg-base-200 py-3 lg:py-4 fixed top-0 left-0 w-full z-[1030] shadow-lg">
+      <div className="navbar-start gap-4 lg:gap-0">
         <div className="dropdown">
           <label
             tabIndex={0}
@@ -122,7 +122,7 @@ const Header = () => {
       <div className="navbar-end">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
+            <div className="w-14 rounded-full">
               <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
             </div>
           </label>
@@ -146,8 +146,13 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to={``} className="text-lg">
-                Logout
+              <Link to={`/login`} className="text-lg">
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link to={`/register`} className="text-lg">
+                Register
               </Link>
             </li>
           </ul>

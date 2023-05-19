@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 
 const HomeBanner = () => {
   return (
-    <div className="relative bg-gray-900">
+    <div className="relative bg-gray-900 mt-16">
       <div className="relative overflow-hidden">
         <img
-          className="w-full h-screen object-cover object-center"
+          style={{ height: "calc(100vh - 4rem)" }}
+          className="w-full object-cover object-center"
           src="https://www.shutterstock.com/image-photo/colorful-plastic-pipe-attraction-sliders-260nw-1293218803.jpg"
           alt="ToyBattleZone Banner"
         />
