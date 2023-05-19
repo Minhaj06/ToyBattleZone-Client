@@ -1,55 +1,20 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
+import { Toaster } from "react-hot-toast";
+import Header from "./components/header/Header";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
-  const [theme, setTheme] = useState("");
-
-  useEffect(() => {
-    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const userPreferredTheme = localStorage.getItem("theme");
-
-    if (userPreferredTheme) {
-      setTheme(userPreferredTheme);
-    } else {
-      if (prefersDarkScheme) {
-        setTheme("night");
-      } else {
-        setTheme("cupcake");
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (theme) {
-      localStorage.setItem("theme", theme);
-      document.documentElement.setAttribute("data-theme", theme);
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "cupcake" ? "night" : "cupcake";
-    setTheme(newTheme);
-  };
-
   return (
-    <div className="text-center">
-      <h1 className="text-4xl font-semibold my-8 text-purple-600">Vite + React</h1>
-      <h1 className="text-4xl font-bold text-primary">Hello, World</h1>
-      <h1 className="text-4xl font-bold text-accent">Hello, World</h1>
-      <input
-        type="checkbox"
-        defaultChecked={true}
-        className="checkbox checkbox-accent checkbox-lg"
-      />
-      <input
-        type="checkbox"
-        defaultChecked={true}
-        className="checkbox checkbox-primary checkbox-lg"
-      />
-      <button className="btn btn-primary" onClick={toggleTheme}>
-        Toggle Theme
-      </button>
-    </div>
+    <>
+      <Toaster />
+      <div className="App">
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    </>
   );
 };
 
