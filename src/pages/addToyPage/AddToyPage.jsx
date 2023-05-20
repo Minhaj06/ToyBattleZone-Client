@@ -39,7 +39,7 @@ const AddToyPage = () => {
       toast.error("Fill up all the fields");
     } else {
       //   console.log(toy);
-      fetch("http://localhost:5000/toy", {
+      fetch(`${import.meta.env.VITE_API}/toy`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

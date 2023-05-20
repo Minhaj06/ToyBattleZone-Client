@@ -1,9 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
+import { FaEye } from "react-icons/fa";
+import { AiOutlineEdit } from "react-icons/ai";
+import { HiOutlineTrash } from "react-icons/hi";
 
 const MyToysPage = () => {
   const [toys, setToys] = useState([]);
+
+  const navigate = useNavigate();
 
   // Context
   const { user, loading } = useContext(AuthContext);
@@ -55,9 +60,20 @@ const MyToysPage = () => {
                     <td>${toy?.price}</td>
                     <td>{toy?.availableQuantity}</td>
                     <td>
-                      <Link to={`/toys/${toy?._id}`} className="btn btn-accent">
-                        View Details
-                      </Link>
+                      <div className="btn-group">
+                        <button
+                          onClick={() => navigate(`/toys/${toy?._id}`)}
+                          className="btn btn-primary"
+                        >
+                          <FaEye size={19} />
+                        </button>
+                        <button className="btn btn-secondary">
+                          <AiOutlineEdit size={19} />
+                        </button>
+                        <button className="btn btn-warning">
+                          <HiOutlineTrash size={19} />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
