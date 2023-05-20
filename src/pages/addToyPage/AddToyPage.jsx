@@ -9,6 +9,7 @@ const AddToyPage = () => {
     e.preventDefault();
 
     const form = e.target;
+
     const sellerName = user.displayName;
     const sellerEmail = user.email;
 
@@ -20,10 +21,41 @@ const AddToyPage = () => {
     const quantity = form.quantity.value;
     const description = form.description.value;
 
+    const toy = {
+      photoURL,
+      toyName,
+      sellerName,
+      sellerEmail,
+      subCategory,
+      price,
+      rating,
+      quantity,
+      description,
+    };
+
     // console.log(photoURL, toyName, price, rating, quantity, description);
 
     if (!photoURL || !toyName || !price || !rating || !quantity || !description) {
       toast.error("Fill up all the fields");
+    } else {
+      //   console.log(toy);
+      fetch("http://localhost:5000/toy", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(toy),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            toast.success("Toy Added Successfully");
+            form.reset();
+          } else {
+            toast.error("Something went wrong! Try again");
+          }
+        });
     }
   };
 
@@ -83,7 +115,10 @@ const AddToyPage = () => {
                 <label className="label">
                   <span className="label-text text-lg">Select Sub Category</span>
                 </label>
-                <select name="subCategory" className="select select-bordered w-full max-w-xs">
+                <select
+                  name="subCategory"
+                  className="select select-bordered w-full text-lg font-normal"
+                >
                   <option value="Marvel">Marvel</option>
                   <option value="Star Wars">Star Wars</option>
                   <option value="Transformers">Transformers</option>
@@ -98,6 +133,7 @@ const AddToyPage = () => {
                   type="number"
                   placeholder="Enter price"
                   className="input input-bordered text-lg"
+                  min={0}
                 />
               </div>
               <div className="form-control">
@@ -109,9 +145,10 @@ const AddToyPage = () => {
                   type="number"
                   placeholder="Enter rating"
                   className="input input-bordered text-lg"
+                  min={0}
                 />
               </div>
-              <div className="form-control col-span-2">
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text text-lg">Available Quantity</span>
                 </label>
@@ -120,6 +157,7 @@ const AddToyPage = () => {
                   type="number"
                   placeholder="Enter quantity"
                   className="input input-bordered text-lg"
+                  min={0}
                 />
               </div>
               <div className="form-control col-span-2">
@@ -134,9 +172,11 @@ const AddToyPage = () => {
                 ></textarea>
               </div>
             </div>
-            <button type="submit" className="btn btn-primary btn-block mt-6">
-              Update Profile
-            </button>
+            <div className="text-right">
+              <button type="submit" className="btn btn-primary tracking-widest px-8 mt-6">
+                Add Toy
+              </button>
+            </div>
           </form>
         </div>
       </div>
