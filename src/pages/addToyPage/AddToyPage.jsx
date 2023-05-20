@@ -18,7 +18,7 @@ const AddToyPage = () => {
     const subCategory = form.subCategory.value;
     const price = form.price.value;
     const rating = form.rating.value;
-    const quantity = form.quantity.value;
+    const availableQuantity = form.availableQuantity.value;
     const description = form.description.value;
 
     const toy = {
@@ -29,13 +29,13 @@ const AddToyPage = () => {
       subCategory,
       price,
       rating,
-      quantity,
+      availableQuantity,
       description,
     };
 
-    // console.log(photoURL, toyName, price, rating, quantity, description);
+    // console.log(photoURL, toyName, price, rating, availableQuantity, description);
 
-    if (!photoURL || !toyName || !price || !rating || !quantity || !description) {
+    if (!photoURL || !toyName || !price || !rating || !availableQuantity || !description) {
       toast.error("Fill up all the fields");
     } else {
       //   console.log(toy);
@@ -153,9 +153,9 @@ const AddToyPage = () => {
                   <span className="label-text text-lg">Available Quantity</span>
                 </label>
                 <input
-                  name="quantity"
+                  name="availableQuantity"
                   type="number"
-                  placeholder="Enter quantity"
+                  placeholder="Enter Availabe Quantity"
                   className="input input-bordered text-lg"
                   min={0}
                 />

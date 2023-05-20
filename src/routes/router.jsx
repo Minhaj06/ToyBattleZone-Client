@@ -7,6 +7,9 @@ import ProfileUpdatePage from "../pages/profileUpdatePage/ProfileUpdatePage";
 import PrivateRoute from "./PrivateRoute";
 import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import AddToyPage from "../pages/addToyPage/AddToyPage";
+import AllToys from "../pages/allToys/AllToys";
+import ToyDetailsPage from "../pages/toyDetailsPage/ToyDetailsPage";
+import MyToysPage from "../pages/myToysPage/MyToysPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,32 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ProfileUpdatePage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/all-toys",
+        element: (
+          <PrivateRoute>
+            <AllToys />
+          </PrivateRoute>
+        ),
+        loader: async () => fetch(`${import.meta.env.VITE_API}/toys`),
+      },
+      {
+        path: "/toys/:id",
+        element: (
+          <PrivateRoute>
+            <ToyDetailsPage />
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => fetch(`${import.meta.env.VITE_API}/toys/${params.id}`),
+      },
+      {
+        path: "/my-toys",
+        element: (
+          <PrivateRoute>
+            <MyToysPage />
           </PrivateRoute>
         ),
       },
