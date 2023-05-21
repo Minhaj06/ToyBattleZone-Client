@@ -10,6 +10,7 @@ import AddToyPage from "../pages/addToyPage/AddToyPage";
 import AllToys from "../pages/allToys/AllToys";
 import ToyDetailsPage from "../pages/toyDetailsPage/ToyDetailsPage";
 import MyToysPage from "../pages/myToysPage/MyToysPage";
+import BlogPage from "../pages/blogPage/BlogPage";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             <AddToyPage />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/blogs",
+        element: <BlogPage />,
       },
     ],
     errorElement: <NotFoundPage />,

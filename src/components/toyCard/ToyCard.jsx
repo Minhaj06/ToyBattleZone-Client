@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/auth";
 
 const ToyCard = ({ toy }) => {
-  console.log(toy);
+  const { user } = useContext(AuthContext);
 
   const { _id, toyName, description, rating, photoURL } = toy;
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="bg-white dark:bg-base-100 rounded-xl shadow-md overflow-hidden">
       <div className="sm:flex h-full">
         <div className="sm:flex-shrink-0">
           <img
@@ -17,19 +19,24 @@ const ToyCard = ({ toy }) => {
           />
         </div>
         <div className="p-6">
-          <Link
-            to={`/toys/${_id}`}
-            className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-          >
+          <h4 className="block mt-1 text-lg leading-tight font-medium text-gray-900 dark:text-gray-200">
             {toyName}
-          </Link>
-          <p className="mt-2 text-gray-500">{description.substring(0, 100)}</p>
+          </h4>
+          <p className="mt-2 text-gray-500 dark:text-gray-300">
+            {description.substring(0, 100)}
+          </p>
           <div className="mt-4">
-            <span className="text-gray-900 font-bold">Rating: </span>
+            <span className="text-gray-900 dark:text-gray-200 font-bold">Rating: </span>
             {rating}
           </div>
           <div className="mt-4">
-            <Link to={`/toys/${_id}`} className="btn btn-outline btn-primary">
+            <Link
+              onClick={() => {
+                !user && toast.error("You have to log in first to view details.");
+              }}
+              to={`/toys/${_id}`}
+              className="btn btn-outline btn-primary"
+            >
               View Details
             </Link>
           </div>
