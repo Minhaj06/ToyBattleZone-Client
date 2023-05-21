@@ -153,13 +153,6 @@ const Header = () => {
             tabIndex={0}
             className="mt-3 p-2 menu menu-compact dropdown-content rounded-box w-52 bg-base-200 border-2 border-gray-300 shadow-md"
           >
-            {user && (
-              <li>
-                <Link to={`/profile`} className="text-lg">
-                  Profile
-                </Link>
-              </li>
-            )}
             <li>
               <Link to={`#`} className="text-lg" onClick={toggleTheme}>
                 Switch to:{" "}

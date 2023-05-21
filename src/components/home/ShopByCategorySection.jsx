@@ -1,9 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ToyCard from "../toyCard/ToyCard";
 
 const ShopByCategorySection = () => {
+  const [toys, setToys] = useState([]);
   const [activeTab, setActiveTab] = useState(1);
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
+  };
+
+  const marvelToys = toys.filter((toy) => toy.subCategory === "Marvel");
+  const starWarsToys = toys.filter((toy) => toy.subCategory === "Star Wars");
+  const transformersToys = toys.filter((toy) => toy.subCategory === "Transformers");
+
+  useEffect(() => {
+    loadToys();
+  }, []);
+
+  const loadToys = async () => {
+    fetch(`${import.meta.env.VITE_API}/toys`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -49,21 +71,12 @@ const ShopByCategorySection = () => {
             </button>
           </div>
           <div className="mt-6">
-            {activeTab === 1 && (
-              <div>
-                <h1>Tab 1</h1>
-              </div>
-            )}
-            {activeTab === 2 && (
-              <div>
-                <h1>Tab 2</h1>
-              </div>
-            )}
-            {activeTab === 3 && (
-              <div>
-                <h1>Tab 3</h1>
-              </div>
-            )}
+            <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
+              {activeTab === 1 && marvelToys.map((toy, i) => <ToyCard toy={toy} key={i} />)}
+              {activeTab === 2 && starWarsToys.map((toy, i) => <ToyCard toy={toy} key={i} />)}
+              {activeTab === 3 &&
+                transformersToys.map((toy, i) => <ToyCard toy={toy} key={i} />)}
+            </div>
           </div>
         </div>
       </div>

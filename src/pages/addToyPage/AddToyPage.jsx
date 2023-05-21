@@ -3,10 +3,12 @@ import { AuthContext } from "../../context/auth";
 import { toast } from "react-hot-toast";
 
 const AddToyPage = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   const handleAddToy = (e) => {
     e.preventDefault();
+
+    loading(true);
 
     const form = e.target;
 
@@ -52,8 +54,10 @@ const AddToyPage = () => {
           if (data.insertedId) {
             toast.success("Toy Added Successfully");
             form.reset();
+            loading(false);
           } else {
             toast.error("Something went wrong! Try again");
+            loading(false);
           }
         });
     }
@@ -130,7 +134,6 @@ const AddToyPage = () => {
                 </label>
                 <input
                   name="price"
-                  type="number"
                   placeholder="Enter price"
                   className="input input-bordered text-lg"
                   min={0}
@@ -142,10 +145,10 @@ const AddToyPage = () => {
                 </label>
                 <input
                   name="rating"
-                  type="number"
                   placeholder="Enter rating"
                   className="input input-bordered text-lg"
                   min={0}
+                  max={5}
                 />
               </div>
               <div className="form-control">
