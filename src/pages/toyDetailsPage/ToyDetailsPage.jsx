@@ -33,7 +33,7 @@ const ToyDetailsPage = () => {
   return (
     <>
       <Title title={`Toy - ${toyName}`} />
-      <section className="mt-44">
+      <section className="mt-44 mb-24">
         <div className="container mx-auto px-3">
           <div className="lg:w-full xl:w-4/5 mx-auto bg-slate-100 dark:bg-slate-800 border dark:border-slate-800 p-6 shadow-xl rounded-xl">
             <div className="flex flex-col md:flex-row">

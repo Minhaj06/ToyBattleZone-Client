@@ -2,7 +2,7 @@ import { FaFacebookSquare, FaTwitterSquare, FaInstagramSquare } from "react-icon
 
 const Footer = () => {
   return (
-    <footer className="bg-base-200 py-10 mt-24">
+    <footer className="bg-base-200 py-16">
       <div className="mx-auto px-3">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
