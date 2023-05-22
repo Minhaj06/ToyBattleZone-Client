@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import Modal from "../../components/modal/Modal";
 import Swal from "sweetalert2";
 import Aos from "aos";
+import Title from "../../components/title/Title";
 
 const MyToysPage = () => {
   const [toys, setToys] = useState([]);
@@ -158,6 +159,7 @@ const MyToysPage = () => {
 
   return (
     <>
+      <Title title={`My Toys`} />
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <form onSubmit={handleUpdateToy}>
           <h2 className="text-3xl font-bold text-center mb-4">Update Toy</h2>

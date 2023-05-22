@@ -12,6 +12,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import Aos from "aos";
+import Title from "../../components/title/Title";
 
 const LoginPage = () => {
   const { logIn, loading } = useContext(AuthContext);
@@ -93,64 +94,67 @@ const LoginPage = () => {
   };
 
   return (
-    <section data-aos="fade-right" data-aos-offset="300" className="mt-44">
-      <div className="container mx-auto px-3">
-        <div className="sm:w-3/4 lg:w-1/2 xl:w-1/3 mx-auto bg-slate-100 dark:bg-slate-800 p-6 border dark:border-slate-800 shadow-xl rounded-xl">
-          <form onSubmit={handleLogin}>
-            <h2 className="text-3xl font-semibold text-center mb-4">Login</h2>
+    <>
+      <Title title={`Login`} />
+      <section data-aos="fade-right" data-aos-offset="300" className="mt-44">
+        <div className="container mx-auto px-3">
+          <div className="sm:w-3/4 lg:w-1/2 xl:w-1/3 mx-auto bg-slate-100 dark:bg-slate-800 p-6 border dark:border-slate-800 shadow-xl rounded-xl">
+            <form onSubmit={handleLogin}>
+              <h2 className="text-3xl font-semibold text-center mb-4">Login</h2>
 
-            <div className="form-control mb-3">
-              <label className="label">
-                <span className="label-text text-lg">Email</span>
-              </label>
-              <input
-                name="email"
-                type="email"
-                placeholder="Type here"
-                className="input input-bordered text-lg"
-              />
+              <div className="form-control mb-3">
+                <label className="label">
+                  <span className="label-text text-lg">Email</span>
+                </label>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Type here"
+                  className="input input-bordered text-lg"
+                />
+              </div>
+              <div className="form-control mb-3">
+                <label className="label">
+                  <span className="label-text text-lg">Password</span>
+                </label>
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Type here"
+                  className="input input-bordered text-lg"
+                />
+              </div>
+              <p>
+                Don't have an account?{" "}
+                <Link to="/register" className="btn btn-link">
+                  Register Now
+                </Link>
+              </p>
+              <button type="submit" className="btn btn-primary btn-block mt-6">
+                Login Now
+              </button>
+            </form>
+            <div className="divider">OR</div>
+            <div className="text-center">
+              <button
+                onClick={handleLoginWithGoogle}
+                className="btn btn-outline btn-success btn-block mb-4"
+              >
+                <FcGoogle className="me-2" size={20} />
+                Login With Google
+              </button>
+              <button
+                onClick={handleLoginWithFacebook}
+                className="btn btn-outline btn-info btn-block"
+              >
+                <BsFacebook className="me-2" size={20} />
+                Login With Facebook
+              </button>
             </div>
-            <div className="form-control mb-3">
-              <label className="label">
-                <span className="label-text text-lg">Password</span>
-              </label>
-              <input
-                name="password"
-                type="password"
-                placeholder="Type here"
-                className="input input-bordered text-lg"
-              />
-            </div>
-            <p>
-              Don't have an account?{" "}
-              <Link to="/register" className="btn btn-link">
-                Register Now
-              </Link>
-            </p>
-            <button type="submit" className="btn btn-primary btn-block mt-6">
-              Login Now
-            </button>
-          </form>
-          <div className="divider">OR</div>
-          <div className="text-center">
-            <button
-              onClick={handleLoginWithGoogle}
-              className="btn btn-outline btn-success btn-block mb-4"
-            >
-              <FcGoogle className="me-2" size={20} />
-              Login With Google
-            </button>
-            <button
-              onClick={handleLoginWithFacebook}
-              className="btn btn-outline btn-info btn-block"
-            >
-              <BsFacebook className="me-2" size={20} />
-              Login With Facebook
-            </button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

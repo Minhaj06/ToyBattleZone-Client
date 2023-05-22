@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Aos from "aos";
+import Title from "../../components/title/Title";
 
 const questions = [
   {
@@ -35,24 +36,27 @@ const BlogPage = () => {
   }, []);
 
   return (
-    <section data-aos="fade-right" data-aos-offset="300" className="mt-44 mb-20">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {questions.map((question) => (
-            <div
-              key={question?._id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
-            >
-              <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
-                {question?.question}
-              </h2>
-              <div className="bg-gray-200 dark:bg-gray-700 h-1 w-16 mb-6"></div>
-              <p className="text-gray-700 dark:text-gray-300">{question?.answer}</p>
-            </div>
-          ))}
+    <>
+      <Title title={`Blogs`} />
+      <section data-aos="fade-right" data-aos-offset="300" className="mt-44 mb-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {questions.map((question) => (
+              <div
+                key={question?._id}
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
+              >
+                <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+                  {question?.question}
+                </h2>
+                <div className="bg-gray-200 dark:bg-gray-700 h-1 w-16 mb-6"></div>
+                <p className="text-gray-700 dark:text-gray-300">{question?.answer}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
