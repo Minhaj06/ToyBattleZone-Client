@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ToyCard from "../toyCard/ToyCard";
+import Aos from "aos";
 
 const ShopByCategorySection = () => {
   const [toys, setToys] = useState([]);
@@ -11,6 +12,10 @@ const ShopByCategorySection = () => {
   const marvelToys = toys.filter((toy) => toy.subCategory === "Marvel");
   const starWarsToys = toys.filter((toy) => toy.subCategory === "Star Wars");
   const transformersToys = toys.filter((toy) => toy.subCategory === "Transformers");
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   useEffect(() => {
     loadToys();
@@ -29,7 +34,12 @@ const ShopByCategorySection = () => {
   };
 
   return (
-    <section className="py-24 bg-slate-100 dark:bg-slate-800">
+    <section
+      data-aos="fade-left"
+      data-aos-duration="600"
+      data-aos-offset="200"
+      className="py-24 bg-slate-100 dark:bg-slate-800"
+    >
       <div className="container mx-auto px-3">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold">Shop By Category</h2>

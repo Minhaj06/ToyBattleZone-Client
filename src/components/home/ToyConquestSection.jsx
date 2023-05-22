@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Aos from "aos";
 
-function ToyConquestSection() {
+const ToyConquestSection = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
-    <section className="bg-light-theme dark:bg-dark-theme py-24">
+    <section
+      data-aos="fade-top"
+      data-aos-duration="600"
+      data-aos-offset="200"
+      className="bg-light-theme dark:bg-dark-theme py-24"
+    >
       <div className="container mx-auto px-3">
         <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-8">
           Toy Conquest: Embark on an Epic Adventure!
@@ -20,6 +30,6 @@ function ToyConquestSection() {
       </div>
     </section>
   );
-}
+};
 
 export default ToyConquestSection;

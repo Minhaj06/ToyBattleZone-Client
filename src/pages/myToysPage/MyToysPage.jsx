@@ -7,6 +7,7 @@ import { HiOutlineTrash } from "react-icons/hi";
 import { toast } from "react-hot-toast";
 import Modal from "../../components/modal/Modal";
 import Swal from "sweetalert2";
+import Aos from "aos";
 
 const MyToysPage = () => {
   const [toys, setToys] = useState([]);
@@ -36,6 +37,10 @@ const MyToysPage = () => {
 
   useEffect(() => {
     loadToys();
+  }, []);
+
+  useEffect(() => {
+    Aos.init();
   }, []);
 
   const handleDeleteToy = (toyId) => {
@@ -253,7 +258,7 @@ const MyToysPage = () => {
           </div>
         </form>
       </Modal>
-      <section className="mt-44">
+      <section data-aos="fade-right" data-aos-offset="300" className="mt-44">
         <div className="container mx-auto px-3">
           <div className="lg:w-full xl:w-4/5 mx-auto bg-slate-100 dark:bg-slate-800 border dark:border-slate-800 p-6 shadow-xl rounded-xl">
             <div className="mb-8 flex justify-end">

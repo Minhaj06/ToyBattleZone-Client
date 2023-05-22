@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Aos from "aos";
 
 const gallery = [
   {
@@ -55,8 +56,17 @@ const gallery = [
 const GallerySection = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
-    <section className="py-24 bg-white dark:bg-gray-900 text-neutral dark:text-white">
+    <section
+      data-aos="fade-right"
+      data-aos-duration="600"
+      data-aos-offset="300"
+      className="py-24 bg-white dark:bg-gray-900 text-neutral dark:text-white"
+    >
       <div className="container mx-auto px-3">
         <div className="text-center">
           <h2 className="text-4xl font-bold">Gallery</h2>

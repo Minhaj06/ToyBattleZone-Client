@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Aos from "aos";
 
 const questions = [
   {
@@ -29,8 +30,12 @@ const questions = [
 ];
 
 const BlogPage = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
-    <section className="mt-44 mb-20">
+    <section data-aos="fade-right" data-aos-offset="300" className="mt-44 mb-20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {questions.map((question) => (

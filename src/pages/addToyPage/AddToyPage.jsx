@@ -1,9 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth";
 import { toast } from "react-hot-toast";
+import Aos from "aos";
 
 const AddToyPage = () => {
   const { user, loading } = useContext(AuthContext);
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   const handleAddToy = (e) => {
     e.preventDefault();
@@ -64,7 +69,7 @@ const AddToyPage = () => {
   };
 
   return (
-    <section className="mt-44">
+    <section data-aos="fade-right" data-aos-offset="300" className="mt-44">
       <div className="container mx-auto px-3">
         <div className="sm:w-4/5 md:w-3/4 lg:w-full xl:w-4/5 mx-auto bg-slate-100 dark:bg-slate-800 border dark:border-slate-800 p-6 shadow-xl rounded-xl">
           <form onSubmit={handleAddToy}>

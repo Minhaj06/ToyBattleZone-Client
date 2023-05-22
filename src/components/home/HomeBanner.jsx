@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Aos from "aos";
 
 const HomeBanner = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
-    <div className="relative bg-gray-900 mt-16">
+    <div
+      data-aos="fade-top"
+      data-aos-duration="600"
+      data-aos-offset="400"
+      className="relative bg-gray-900 mt-16"
+    >
       <div className="relative overflow-hidden">
         <img
           style={{ height: "calc(100vh - 4rem)" }}
